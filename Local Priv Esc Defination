@@ -1,0 +1,33 @@
+Thinking
+Here are the professionally recognized names for Local Privilege Escalation (LPE) exploits and tools commonly used in Windows environments, categorized by their underlying technique:
+Token Impersonation/Manipulation ("Potato" Family)
+
+    Hot Potato (Original 2016 exploit)
+    Rotten Potato
+    Juicy Potato
+    Rogue Potato
+    GodPotato
+    PrintSpoofer
+    PipePotato
+    SigmaPotato
+
+Service Misconfigurations & Weak Permissions
+
+    Unquoted Service Path
+    Insecure Service Permissions
+    Weak Registry Permissions
+    AlwaysInstallElevated (Registry Misconfiguration)
+
+Kernel Exploits & Vulnerabilities
+
+    EternalBlue (MS17-010)
+    BlueKeep (CVE-2019-0708)
+    ZeroLogon (CVE-2020-1472)
+    Netlogon
+    Spooler (PrintNightmare, CVE-2021-34527)
+
+Configuration & Credential Theft
+
+    UAC Bypass (Various methods)
+    Scheduled Task Misconfiguration
+    Mimikatz (Tool for credential extraction, not an LPE technique itself, but used after LPE)
